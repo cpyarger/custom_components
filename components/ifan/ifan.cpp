@@ -18,6 +18,9 @@ void IFan::setup() {
   pinMode(relay_2, 0x01);
   pinMode(relay_3, 0x01);
 
+  //Initialize buzzer to stop errant beeping due to non-initialized pin
+  digitalWrite(buzzer, HIGH);
+
   auto restore = this->restore_state_();
   if (restore.has_value()) {
     restore->apply(*this);
